@@ -16,7 +16,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Employee findFirstByName(String name);
 
     //2.找出Employee表中第一个姓名包含`*`字符并且薪资大于*的雇员个人信息
-    Employee findFirstByNameLikeAndSalaryIsGreaterThan(String character,Integer salary);
+    Employee findFirstByNameContainingAndSalaryIsGreaterThan(String character,Integer salary);
 
     //3.找出一个薪资最高且公司ID是*的雇员以及该雇员的姓名
     @Query("SELECT E1.name FROM Employee E1 WHERE E1.companyId = ?1 AND E1.salary = (SELECT MAX(E2.salary) from Employee E2 WHERE E2.companyId = ?1)")
@@ -34,4 +34,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     int modifyName(String newName, String name);
 
     //7.删除姓名是*的employee
+    void deleteByName(String name);
 }
