@@ -41,25 +41,25 @@ public class EmployeeJPATest {
         //1.查询名字是小红的employee
       Employee expectedEmployee = new Employee("xiaohong",19,"female",7000,1, 1);
 
-      String actualName = employeeRepository.getFirstByName("xiaohong").getName();
+      String actualName = employeeRepository.findFirstByName("xiaohong").getName();
       assertThat(actualName).isEqualTo(expectedEmployee.getName());
     }
 
     @Test
     public void should_return_employee_given_character_in_name_and_salary_large_than() throws Exception {
-        //2.找出Employee表中第一个姓名包含`n`字符的雇员所有个人信息
+      //2.找出Employee表中第一个姓名包含`n`字符的雇员所有个人信息
       Employee expectedEmployee = new Employee("xiaohong",19,"female",7000,1, 1);
-      String actualName = employeeRepository.getFirstByNameCharacterAndSalaryIsGreaterThan("xiaohong",6000).getName();
+      String actualName = employeeRepository.findFirstByNameLikeAndSalaryIsGreaterThan("xiaohong",6000).getName();
       assertThat(actualName).isEqualTo(expectedEmployee.getName());
     }
-//
-//    @Test
-//    public void should_return_employee_name_when_employee_salary_is_max_and_given_company_id_() throws Exception {
-//        //3.找出一个薪资最高且公司ID是1的雇员以及该雇员的name
-//        Employee expectedEmployee = new Employee("xiaohong",19,"female",7000,1, 1);
-//        String actualName = null;
-//        assertThat(actualName).isEqualTo(expectedEmployee.getName());
-//    }
+
+    @Test
+    public void should_return_employee_name_when_employee_salary_is_max_and_given_company_id_() throws Exception {
+        //3.找出一个薪资最高且公司ID是1的雇员以及该雇员的name
+        Employee expectedEmployee = new Employee("xiaohong",19,"female",7000,1, 1);
+        String actualName = employeeRepository.findHighestSalaryInCompanyName(1);
+        assertThat(actualName).isEqualTo(expectedEmployee.getName());
+    }
 //
 //    @Test
 //    public void should_return_employee_list_when_input_page_request() throws Exception {
