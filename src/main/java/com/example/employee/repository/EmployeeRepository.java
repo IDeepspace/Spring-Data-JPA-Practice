@@ -3,6 +3,8 @@ package com.example.employee.repository;
 import com.example.employee.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
@@ -18,6 +20,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @org.springframework.data.jpa.repository.Query("SELECT E1.name FROM Employee E1 WHERE E1.companyId = ?1 AND E1.salary = (SELECT MAX(E2.salary) from Employee E2 WHERE E2.companyId = ?1)")
     String findHighestSalaryInCompanyName(Integer companyId);
     //4.实现对Employee的分页查询，每页两个数据
+    Page<com.example.employee.entity.Employee> findAll(Pageable pageable);
 
     //5.查找**的所在的公司的公司名称
 
