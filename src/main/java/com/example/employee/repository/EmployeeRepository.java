@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.Modifying;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
@@ -28,6 +29,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     String findCompanyNameByName(String name);
 
     //6.将*的名字改成*,输出这次修改影响的行数
+    @Modifying
+    @Query("update Employee e set e.name = ?2 where e.name = ?1")
+    int modifyName(String newName, String name);
 
     //7.删除姓名是*的employee
 }
