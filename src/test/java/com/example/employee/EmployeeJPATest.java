@@ -68,14 +68,14 @@ public class EmployeeJPATest {
         Page<Employee> EmployeePage = employeeRepository.findAll(PageRequest.of(1, 2));
         assertThat(EmployeePage.getTotalPages()).isEqualTo(3);
     }
-//
-//    @Test
-//    public void should_return_company_name_when_input_employee_name() throws Exception {
-//        //5.查找xiaohong的所在的公司的公司名称
-//        String expectedCompanyName = "alibaba";
-//        String actualCompanyName = null;
-//        assertThat(actualCompanyName).isEqualTo(expectedCompanyName);
-//    }
+
+    @Test
+    public void should_return_company_name_when_input_employee_name() throws Exception {
+        //5.查找xiaohong的所在的公司的公司名称
+        String expectedCompanyName = "alibaba";
+        String actualCompanyName = employeeRepository.findCompanyNameByName("xiaohong");
+        assertThat(actualCompanyName).isEqualTo(expectedCompanyName);
+    }
 //
 //    @Test
 //    public void should_return_influence_lines_when_update_employee_name() throws Exception {
