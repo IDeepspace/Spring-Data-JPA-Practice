@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Column;
 
 @Entity
 @Table
@@ -13,7 +14,7 @@ public class Employee {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
 
-  private Integer id;
+  private long id;
   private String name;
   private Integer age;
   private String gender;
@@ -21,7 +22,7 @@ public class Employee {
   private Integer salary;
 
 
-  public Employee(Integer id, String name, Integer age, String gender, Integer companyId,
+  public Employee(long id, String name, Integer age, String gender, Integer companyId,
       Integer salary) {
     this.id = id;
     this.name = name;
@@ -31,7 +32,7 @@ public class Employee {
     this.salary = salary;
   }
 
-  public Employee(String name, Integer age, String gender, Integer salary, Integer companyId, Integer id) {
+  public Employee(String name, Integer age, String gender, Integer salary, Integer companyId, long id) {
     this.name = name;
     this.age = age;
     this.gender = gender;
@@ -44,7 +45,7 @@ public class Employee {
   }
 
 
-  public Integer getId() {
+  public long getId() {
     return id;
   }
 

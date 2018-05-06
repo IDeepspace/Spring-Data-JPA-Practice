@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 @RunWith(SpringRunner.class)
@@ -72,7 +73,7 @@ public class EmployeeJPATest {
     @Test
     public void should_return_company_name_when_input_employee_name() throws Exception {
         //5.查找xiaohong的所在的公司的公司名称
-        String expectedCompanyName = "alibaba";
+        String expectedCompanyName = "baidu";
         String actualCompanyName = employeeRepository.findCompanyNameByName("xiaohong");
         assertThat(actualCompanyName).isEqualTo(expectedCompanyName);
     }
